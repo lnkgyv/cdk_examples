@@ -1,0 +1,4 @@
+There are two libraries is needed to build these exampes:
+ 1. Ncurses.
+ 2. CDK.
+You should to get theirs from repository for your distro or build theirs from source.
