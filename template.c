@@ -2,23 +2,37 @@
 
 int show_template() {
 	CDKSCREEN *cdkscreen;
-	CDKTEMPLATE *CDKPhone;
+	CDKTEMPLATE *CDKDate;
 	WINDOW *screen;
-	char *phone;
+	char *mesg[10], temp[256];
 
 	screen = initscr();
 	cdkscreen = initCDKScreen(screen);
 	initCDKColor();
 
-	CDKPhone = newCDKTemplate(cdkscreen, CENTER, CENTER,
-		"", "Date: ", "##.##.#### ##:##","DD.MM.YYYY HH:MM",
-		FALSE, FALSE);
+	CDKDate = newCDKTemplate(cdkscreen,
+			CENTER,
+			CENTER,
+			"Set Date:",
+			"",
+			"##.##.#### ##:##",
+			"DD.MM.YYYY HH:MM",
+			FALSE,
+			FALSE
+	);
 
 	refreshCDKScreen(cdkscreen);
 
-	phone = activateCDKTemplate(CDKPhone, 0);
+	activateCDKTemplate(CDKDate, 0);
 
-	destroyCDKEntry(CDKPhone);
+	if (CDKDate->exitType == vNORMAL)
+	{
+	  sprintf (temp, "(%s)", mixCDKTemplate(CDKDate));
+	  mesg[0] = temp;
+	  popupLabel (cdkscreen, mesg, 1);
+	}
+
+	destroyCDKEntry(CDKDate);
 	destroyCDKScreen(cdkscreen);
 	endCDK();
 
