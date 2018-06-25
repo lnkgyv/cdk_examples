@@ -2,6 +2,8 @@
 #define TEMPLATE_H
 
 #include <cdk.h>
+#include <string.h>
+#include <time.h>
 
 int show_template();
 
